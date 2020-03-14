@@ -1,3 +1,5 @@
+# Web Scraping data from https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland#Statistik and calculating the growth factor
+
 import requests
 from bs4 import BeautifulSoup
 from matplotlib import pyplot as plt
