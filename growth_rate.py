@@ -25,7 +25,10 @@ for tr in soup.find_all('tr'):
                         if th.text[i].isnumeric():
                             tmp = tmp + th.text[i]
                         else:
-                            break
+                            if th.text[i] == '.':
+                                None
+                            else:    
+                                break
                     number.append(tmp)
     if start == 1:
         break
@@ -43,7 +46,7 @@ plt.title('Wachstum pro Tag')
 plt.show()
 
 plt.plot(growth,'bo-')
-plt.title('Wachstumsfaktor')
+plt.title('Wachstumsfaktor Covid-19 Deutschland')
 plt.show()
 
 
