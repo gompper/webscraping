@@ -41,13 +41,16 @@ for i in range(0,len(numberArr)-1):
     growth[i] = numberArr[i+1]/numberArr[i]
 
 plt.figure(1)
-plt.plot(numberArr,'bo-')     
+#plt.plot(numberArr,'bo-')
+x_pos = np.arange(len(numberArr))
+plt.bar(x_pos, numberArr, align='center', alpha=1)    
 plt.title('Wachstum pro Tag')
 plt.show()
 
 plt.plot(growth,'bo-')
 plt.title('Wachstumsfaktor Covid-19 Deutschland')
 plt.show()
+
 
 
     
