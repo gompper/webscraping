@@ -33,5 +33,7 @@ for i in range(0,len(daily_growth)-1):
         
         
 plt.figure(1)
+plt.axis([0,len(growth),0,5])
 plt.plot(growth,'o-')
+plt.title('Wachstumsfaktor Covid-19 Deutschland')
 plt.show()
