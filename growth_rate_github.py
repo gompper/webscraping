@@ -14,26 +14,35 @@ url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_cov
 data = pd.read_csv(url)
 data_np = data.to_numpy()
 
-daily = np.empty(len(data_np[11])-6)
-for i in range(6,len(data_np[11])):
-    daily[i-6] = data_np[11][i]
+daily = np.empty([len(data),len(data_np[11])-6])
+for j in range(0,len(data)):
+    for i in range(6,len(data_np[11])):
+        daily[j][i-6] = data_np[j][i]
+        
 
-daily_growth = np.empty(len(daily)-1)    
-for i in range(0,len(daily)-1):
-    daily_growth[i] = daily[i+1] - daily[i]    
+daily_growth = np.empty([len(data),len(daily[0])-1])    
+for j in range(0,len(daily)-1):
+    for i in range(0,len(daily[0])-1):
+        daily_growth[j][i] = daily[j][i+1] - daily[j][i]    
 
 
 
-growth = np.empty(len(daily_growth)-1)
-for i in range(0,len(daily_growth)-1):
-    if daily_growth[i] == 0:
-        growth[i] = 0
-    else:
-        growth[i] = daily_growth[i+1] / daily_growth[i]
+growth = np.empty([len(daily_growth),len(daily_growth[0])-1])
+for j in range(0,len(daily_growth)):
+    for i in range(0,len(daily_growth[0])-1):
+        if daily_growth[j][i] == 0:
+            growth[j][i] = 0
+        else:
+            growth[j][i] = daily_growth[j][i+1] / daily_growth[j][i]
         
         
 plt.figure(1)
-plt.axis([0,len(growth),0,5])
-plt.plot(growth,'o-')
+plt.subplot(211)
+plt.axis([0,len(growth[0]),0,5])
+plt.plot(growth[11],'o-')
 plt.title('Wachstumsfaktor Covid-19 Deutschland')
+plt.subplot(212)
+plt.axis([0,len(growth[0]),0,5])
+plt.plot(growth[35],'o-')
+plt.title('Wachstumsfaktor Covid-19 Brasilien')
 plt.show()
